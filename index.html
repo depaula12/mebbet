@@ -1,0 +1,372 @@
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MEB BET</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:wght@600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<style>
+  :root{--feltro:#0F4D37;--feltro2:#072A1F;--fundo:#051912;--ouro:#E3B54F;--ouro2:#9C7420;--vermelho:#D8233F;--preto:#15171C;--marfim:#F4ECD8;--verde:#27C36A;--sombra:rgba(0,0,0,.5)}
+  *{box-sizing:border-box}
+  body{margin:0;padding:14px 12px 24px;color:var(--marfim);font-family:'Barlow',system-ui,sans-serif;min-height:100vh;overflow-x:hidden;background:radial-gradient(110% 70% at 50% -5%,#1A6B4C 0%,var(--feltro2) 55%,var(--fundo) 100%)}
+  .wrap{max-width:520px;margin:0 auto}
+  .katex{font-size:1.06em}
+  .painel{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;padding:10px 12px;background:linear-gradient(180deg,#155A41,#0C3B2A);border:1px solid var(--ouro2);border-top-color:var(--ouro);border-radius:8px;box-shadow:0 6px 18px var(--sombra)}
+  .rot{font-size:12px;letter-spacing:.04em;color:#9CCDB5;margin:0 0 2px}
+  .leitura{font-family:'Barlow Semi Condensed';font-weight:600;font-size:38px;line-height:.9;font-variant-numeric:tabular-nums;color:#FFF7E3;text-shadow:0 0 16px rgba(227,181,79,.35)}
+  .leitura small{font-size:15px;color:var(--ouro);margin-left:4px}
+  .dir{text-align:right}
+  .quem{font-family:'Oswald';font-size:17px;color:var(--ouro);line-height:1.1}
+  .serie{font-size:13px;color:#9CCDB5;margin-top:2px}
+  .mini{background:none;border:1px solid var(--ouro2);color:#C9B27A;border-radius:6px;padding:3px 8px;font-family:'Barlow';font-size:12px;cursor:pointer;margin:6px 0 0 4px}
+  .mini.on{color:var(--verde);border-color:var(--verde)}
+  .barra{height:6px;background:#072A1F;border-radius:3px;margin-top:10px;overflow:hidden;border:1px solid #1F6B4B}
+  .barra i{display:block;height:100%;background:linear-gradient(90deg,var(--verde),var(--ouro));transition:width .4s}
+  .cartao{margin-top:12px;padding:16px;background:linear-gradient(180deg,#0E3F2E,#0A2D21);border:1px solid var(--ouro2);border-radius:10px;box-shadow:0 10px 26px var(--sombra)}
+  .tag{display:inline-block;font-family:'Oswald';font-size:13px;letter-spacing:.06em;padding:2px 8px;border-radius:4px;border:1px solid var(--ouro);color:var(--ouro)}
+  .valor{float:right;font-family:'Barlow Semi Condensed';font-weight:600;font-size:19px;color:var(--verde)}
+  .valor small{color:var(--vermelho);font-size:14px;margin-left:8px}
+  .pergunta{font-size:18px;line-height:1.5;margin:14px 0 12px;font-weight:500}
+  .titulo{font-family:'Oswald';font-size:30px;line-height:1.1;margin:10px 0 6px;color:#FFF7E3}
+  .logo{font-family:'Oswald';font-weight:600;font-size:44px;letter-spacing:.08em;line-height:1;margin:2px 0 4px;color:#FFF7E3;text-shadow:0 0 18px rgba(227,181,79,.55),0 3px 0 #6E5012}
+  .letreiro{position:relative;margin:4px 0 14px;padding:26px 14px 22px;text-align:center;border-radius:14px;background:radial-gradient(90% 120% at 50% 0%,#17573F 0%,#072A1F 70%);border:3px solid var(--ouro2);box-shadow:0 0 0 3px #3A2C0F,0 14px 34px rgba(0,0,0,.6),inset 0 0 40px rgba(0,0,0,.45)}
+  .letreiro::before{content:"";position:absolute;inset:6px;border-radius:9px;border:4px dotted #FFE39A;opacity:.9;filter:drop-shadow(0 0 5px #FFD24A);animation:bulbs 1s steps(2) infinite;pointer-events:none}
+  @keyframes bulbs{0%{border-color:#FFE39A}50%{border-color:#7A5A16}}
+  .logao{font-family:'Oswald';font-weight:600;font-size:clamp(72px,22vw,118px);line-height:.92;letter-spacing:.06em;color:#FFF7E3;text-shadow:0 0 26px rgba(227,181,79,.75),0 5px 0 #6E5012,0 8px 14px rgba(0,0,0,.6)}
+  .logao b{display:block;color:#FF3B57;text-shadow:0 0 30px rgba(216,35,63,.85),0 5px 0 #7E1022,0 8px 14px rgba(0,0,0,.6)}
+  .sub{font-family:'Barlow';font-size:14px;letter-spacing:.14em;color:var(--ouro);margin-top:10px}
+  .cta{display:block;width:100%;margin:0 0 12px;padding:18px 12px;border-radius:10px;border:none;cursor:pointer;font-family:'Oswald';font-size:24px;letter-spacing:.06em;background:linear-gradient(180deg,#FFD97A,var(--ouro) 60%,#C9962E);color:#2A1D05;box-shadow:0 6px 0 #6E5012,0 0 26px rgba(227,181,79,.45)}
+  .cta:active{transform:translateY(3px);box-shadow:0 3px 0 #6E5012}
+  @media (prefers-reduced-motion:reduce){.letreiro::before{animation:none}}
+  .logo b{color:var(--vermelho);text-shadow:0 0 18px rgba(216,35,63,.6),0 3px 0 #7E1022}
+  .nota{font-size:13px;color:#9CCDB5;line-height:1.4;margin:10px 0 0}
+  .dicas{display:flex;gap:8px;margin-bottom:12px}
+  .dica{flex:1;padding:8px 6px;border-radius:6px;background:transparent;border:1px dashed var(--ouro);color:var(--ouro);font-family:'Barlow';font-size:13px;line-height:1.25;cursor:pointer}
+  .dica b{font-family:'Oswald';font-size:14px;display:block}
+  .dica-txt{margin:0 0 12px;padding:10px 12px;background:#3A2C0F;border:1px solid var(--ouro);border-radius:6px;font-size:15px;line-height:1.45}
+  .opt{display:block;width:100%;text-align:left;margin:8px 0;padding:12px 14px;background:#0B3527;border:1px solid #1F6B4B;border-radius:8px;color:var(--marfim);font-family:'Barlow';font-size:16px;line-height:1.4;cursor:pointer;transition:background .12s,border-color .12s,transform .08s,opacity .3s}
+  .opt:hover:not(:disabled){background:#124A36;border-color:var(--ouro)}
+  .opt:active{transform:scale(.99)}
+  .opt:focus-visible{outline:2px solid var(--ouro);outline-offset:2px}
+  .opt.certa{background:#0F5A34;border-color:var(--verde)}
+  .opt.errada{background:#5A1420;border-color:var(--vermelho)}
+  .opt.some{opacity:.18;text-decoration:line-through}
+  .porque{margin:14px 0 0;padding:12px;border-left:3px solid var(--ouro);background:#072A1F;font-size:15px;line-height:1.5}
+  .avatares{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 14px}
+  .av{width:52px;height:52px;border-radius:50%;font-size:26px;background:#0B3527;border:2px solid #1F6B4B;cursor:pointer;display:flex;align-items:center;justify-content:center}
+  .av.sel{border-color:var(--ouro);background:#3A2C0F;box-shadow:0 0 12px rgba(227,181,79,.5)}
+  .nome{width:100%;padding:12px 14px;font-family:'Barlow';font-size:18px;border-radius:8px;border:1px solid var(--ouro2);background:#072A1F;color:var(--marfim)}
+  .nome:focus{outline:2px solid var(--ouro)}
+  .fases{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:12px 0}
+  .fase{padding:10px 8px;border-radius:8px;background:#072A1F;border:1px solid #1F6B4B;text-align:center}
+  .fase.at{border-color:var(--ouro);background:#3A2C0F}
+  .fase b{font-family:'Oswald';font-size:15px;display:block;color:var(--ouro)}
+  .fase span{display:block;font-size:13px;color:#9CCDB5;line-height:1.35}
+  .fase .g{color:var(--verde)} .fase .p{color:var(--vermelho)}
+  .rk{list-style:none;padding:0;margin:12px 0 0}
+  .rk li{display:grid;grid-template-columns:30px 40px 1fr auto;align-items:center;gap:8px;padding:9px 6px;border-bottom:1px solid #1F6B4B;font-size:16px}
+  .rk li.eu{background:#3A2C0F;border-radius:6px}
+  .rk .pos{font-family:'Oswald';color:var(--ouro);font-size:18px;text-align:center}
+  .rk .avl{font-size:26px;text-align:center}
+  .rk .pts{font-family:'Barlow Semi Condensed';font-weight:600;font-size:19px;color:var(--verde);text-align:right;line-height:1}
+  .rk .sub{font-size:12px;color:#9CCDB5}
+  .rk .pts .sub{display:block;font-weight:400;text-align:right;margin-top:3px}
+  .stats{display:flex;gap:10px;margin:12px 0}
+  .stat{flex:1;padding:8px 10px;border-radius:8px;background:#072A1F;border:1px solid #1F6B4B}
+  .stat b{font-family:'Barlow Semi Condensed';font-weight:600;font-size:22px;display:block;color:#FFF7E3}
+  .stat span{font-size:12px;color:#9CCDB5}
+  .roleta{display:block;margin:6px auto 0;width:min(310px,88vw);filter:drop-shadow(0 8px 20px rgba(0,0,0,.6))}
+  .agulha{transform-origin:150px 150px}
+  .centro-num{font-family:'Barlow Semi Condensed';font-weight:600;font-size:40px;fill:#FFF7E3;text-anchor:middle}
+  .centro-rot{font-family:'Barlow';font-size:12px;fill:#BFE3CF;text-anchor:middle}
+  .ctrl{margin-top:8px}
+  .linha{display:flex;justify-content:space-between;align-items:baseline;font-size:14px;color:#9CCDB5}
+  .mult{font-family:'Oswald';font-size:32px;color:var(--vermelho);line-height:1;text-shadow:0 0 10px rgba(216,35,63,.5)}
+  .chance{font-family:'Oswald';font-size:32px;color:var(--verde);line-height:1;text-shadow:0 0 10px rgba(39,195,106,.5)}
+  input[type=range]{width:100%;margin:10px 0 4px;accent-color:var(--vermelho);height:26px}
+  .botoes{display:flex;gap:10px;margin-top:10px}
+  button.acao{flex:1;padding:14px 10px;border-radius:8px;border:none;cursor:pointer;font-family:'Oswald';font-size:18px;letter-spacing:.02em}
+  .arriscar{background:linear-gradient(180deg,#F04A62,var(--vermelho));color:#FFF3F3;box-shadow:0 4px 0 #7E1022,0 0 18px rgba(216,35,63,.35)}
+  .arriscar:active{transform:translateY(2px);box-shadow:0 2px 0 #7E1022}
+  .guardar{background:linear-gradient(180deg,#2FD675,#1C9E52);color:#04200F;box-shadow:0 4px 0 #0E5A2E}
+  .guardar:active{transform:translateY(2px);box-shadow:0 2px 0 #0E5A2E}
+  .ouro-btn{background:linear-gradient(180deg,#FFD97A,var(--ouro));color:#2A1D05;box-shadow:0 4px 0 #6E5012}
+  .tudo{width:100%;margin-top:10px;padding:10px;border-radius:8px;cursor:pointer;background:transparent;border:1px dashed var(--ouro);color:var(--ouro);font-family:'Oswald';font-size:15px}
+  button:disabled{opacity:.45;cursor:not-allowed}
+  .rodape{text-align:center;margin-top:14px;font-size:13px;color:#6FA88C}
+  @keyframes tremor{0%,100%{transform:translate(0,0)}20%{transform:translate(-6px,3px)}40%{transform:translate(5px,-4px)}60%{transform:translate(-4px,-2px)}80%{transform:translate(3px,3px)}}
+  .tremendo{animation:tremor .45s}
+  @keyframes pisca{0%,100%{opacity:1}50%{opacity:.25}}
+  .luz{animation:pisca .5s infinite}
+  .flash{position:fixed;inset:0;pointer-events:none;opacity:0;z-index:9}
+  @keyframes clarao{0%{opacity:.75}100%{opacity:0}}
+  .flash.on{animation:clarao .5s ease-out}
+  #confete{position:fixed;inset:0;pointer-events:none;z-index:10}
+  .aviso{position:fixed;left:50%;top:34%;transform:translate(-50%,-50%);font-family:'Oswald';font-size:clamp(34px,11vw,62px);letter-spacing:.02em;pointer-events:none;z-index:11;opacity:0;text-align:center;white-space:nowrap;text-shadow:0 0 24px currentColor}
+  @keyframes estampa{0%{opacity:0;transform:translate(-50%,-50%) scale(.4)}18%{opacity:1;transform:translate(-50%,-50%) scale(1.12)}28%{transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.05)}}
+  .aviso.on{animation:estampa 1.1s ease-out}
+  @media (prefers-reduced-motion:reduce){.tremendo,.flash.on,.aviso.on,.luz{animation-duration:.01s}}
+</style>
+
+<div class="wrap">
+  <div class="painel" id="painel" style="display:none">
+    <div><p class="rot" id="rotBanca">Sua banca</p><div class="leitura"><span id="banca">0</span><small>bar</small></div></div>
+    <div class="dir"><div class="quem" id="quem"></div><div class="serie" id="serie"></div>
+      <button class="mini" id="brk">ranking</button><button class="mini on" id="bsom">efeitos</button><button class="mini on" id="bmus">música</button></div>
+  </div>
+  <div class="barra" id="barra" style="display:none"><i id="prog"></i></div>
+  <div id="palco"></div>
+  <p class="rodape" id="rodape"></p>
+</div>
+<div class="flash" id="flash"></div>
+<canvas id="confete"></canvas>
+<div class="aviso" id="aviso"></div>
+
+<script>
+/* ================= rodada ================= */
+const RODADA={id:"r1",nome:"Rodada 1 · Listas 3 e 4"};
+const QUESTOES=[{"n":1,"fase":"facil","cap":"cap. 5","enunciado":"Na convenção do curso, $Q - W = \\Delta U$. Um gás num cilindro-pistão é comprimido pelo pistão enquanto perde calor para o ambiente. Quais são os sinais de $Q$ e de $W$?","alternativas":["$Q > 0$ e $W > 0$","$Q < 0$ e $W < 0$","$Q < 0$ e $W > 0$","$Q > 0$ e $W < 0$"],"correta":1,"dica":"Pergunte-se: o calor entra ou sai do gás? O trabalho é feito pelo gás ou sobre ele?","explicacao":"$Q > 0$ é calor entrando e $W > 0$ é trabalho feito pelo sistema. Calor saindo dá $Q < 0$ e compressão (trabalho feito sobre o gás, $dV < 0$) dá $W < 0$."},{"n":2,"fase":"facil","cap":"cap. 6","enunciado":"Um volume de controle opera em regime permanente com uma entrada e uma saída. Qual afirmação é necessariamente verdadeira?","alternativas":["A velocidade do fluido na entrada é igual à da saída","A vazão volumétrica na entrada é igual à da saída","O estado do fluido na entrada é igual ao da saída","A massa dentro do VC não varia no tempo, logo $\\dot m_e = \\dot m_s$"],"correta":3,"dica":"Regime permanente significa que nada muda com o tempo DENTRO do VC. O que isso implica para $dm_{vc}/dt$?","explicacao":"Em regime permanente $dm_{vc}/dt = 0$, então o que entra de massa sai. Velocidade e vazão volumétrica $\\dot m v$ podem mudar, porque área e volume específico mudam entre entrada e saída."},{"n":3,"fase":"facil","cap":"cap. 5","enunciado":"Um tanque rígido e fechado contendo um gás é aquecido por uma resistência externa (calor atravessa a parede). Para esse processo, o que vale?","alternativas":["$W = 0$ e $Q = \\Delta U$","$W = P\\Delta V$ e $Q = \\Delta H$","$Q = 0$, porque o volume é constante","$W = 0$ e $Q = \\Delta H$"],"correta":0,"dica":"Com volume constante, existe trabalho de fronteira móvel? O que sobra na 1ª lei?","explicacao":"Tanque rígido não tem fronteira móvel, logo $W = \\int P\\,dV = 0$ e a 1ª lei fica $Q = \\Delta U$. $\\Delta H$ só aparece em processos a pressão constante."},{"n":4,"fase":"facil","cap":"cap. 6","enunciado":"Numa válvula de estrangulamento adiabática, com variações de energia cinética e potencial desprezíveis, qual propriedade tem o mesmo valor na entrada e na saída?","alternativas":["A temperatura, para qualquer fluido","A pressão","A entalpia específica: $h_e = h_s$","A energia interna específica: $u_e = u_s$"],"correta":2,"dica":"Aplique a 1ª lei para VC com $\\dot Q = 0$, $\\dot W = 0$ e sem EC e EP. O que resta?","explicacao":"Sem calor, sem trabalho de eixo e sem EC/EP, a 1ª lei reduz a $h_e = h_s$. A pressão cai (é para isso que serve a válvula) e $T$ só se conserva no caso particular de gás ideal."},{"n":5,"fase":"facil","cap":"cap. 5","enunciado":"Um gás ideal se expande isotermicamente num cilindro-pistão, realizando $50\\ \\text{kJ}$ de trabalho sobre o pistão. Qual é o calor trocado?","alternativas":["Não é possível determinar sem conhecer $c_v$","$Q = 0$","$Q = +50\\ \\text{kJ}$ (calor recebido)","$Q = -50\\ \\text{kJ}$ (calor cedido)"],"correta":2,"dica":"Para gás ideal, $u$ depende só de $T$. Quanto vale $\\Delta U$ se $T$ não muda?","explicacao":"Gás ideal isotérmico tem $\\Delta U = m c_v \\Delta T = 0$, então $Q = W = +50\\ \\text{kJ}$. Isotérmico não é adiabático: para manter $T$ constante enquanto realiza trabalho, o gás precisa receber calor."},{"n":6,"fase":"facil","cap":"cap. 6","enunciado":"Na 1ª lei para volume de controle, a energia de cada corrente que entra ou sai usa $h$ em vez de $u$. Por quê?","alternativas":["Porque $h = u + Pv$ inclui o trabalho de fluxo $Pv$ necessário para empurrar a massa através da fronteira","Porque $h$ inclui a energia cinética do escoamento","Porque em regime permanente $u = h$","Porque o fluido dentro do VC está sempre a pressão constante"],"correta":0,"dica":"Para uma porção de massa atravessar a fronteira, o fluido atrás dela precisa empurrá-la. Que trabalho é esse, por unidade de massa?","explicacao":"Empurrar a massa através da fronteira exige o trabalho de fluxo $Pv$ por kg. Somado a $u$, ele forma $h = u + Pv$; a energia cinética continua sendo um termo separado, $V^2/2$."},{"n":7,"fase":"facil","cap":"cap. 5","enunciado":"Água num cilindro-pistão com pistão livre (pressão constante) é aquecida lentamente do estado 1 ao estado 2. Qual expressão dá diretamente o calor $Q$?","alternativas":["$Q = m(u_2 - u_1)$","$Q = m(u_2 - u_1) - P(V_2 - V_1)$","$Q = P(V_2 - V_1)$","$Q = m(h_2 - h_1)$"],"correta":3,"dica":"Escreva $Q = \\Delta U + W$ com $W = P(V_2 - V_1)$ e agrupe $U + PV$.","explicacao":"A pressão constante, $Q = m(u_2 - u_1) + P(V_2 - V_1) = m[(u_2 + Pv_2) - (u_1 + Pv_1)] = m(h_2 - h_1)$. Subtrair o trabalho em vez de somar é o erro de sinal clássico."},{"n":8,"fase":"facil","cap":"cap. 6","enunciado":"No processo de enchimento de um tanque adiabático (inicialmente evacuado) com um gás ideal com calor específico constante, a temperatura final dentro do tanque é menor, maior ou igual à temperatura de alimentação? Pressão e temperatura do gás de entrada são constantes, e a pressão final do tanque é igual à pressão de alimentação.","alternativas":["Igual, porque o tanque é adiabático","Maior, porque $u_2 = h_e$ e portanto $T_2 = k\\,T_e$","Menor, porque o gás se expande ao entrar no tanque","Igual, porque a pressão final é igual à de alimentação"],"correta":1,"dica":"Faça o balanço de energia do tanque com $Q = 0$, $W = 0$ e $m_1 = 0$: $m_2 u_2 = m_e h_e$.","explicacao":"Como $m_2 = m_e$, sai $u_2 = h_e$, ou seja $c_v T_2 = c_p T_e$ e $T_2 = kT_e > T_e$. O trabalho de fluxo $Pv$ da linha vira energia interna dentro do tanque."},{"n":9,"fase":"facil","cap":"cap. 5","enunciado":"Um tanque rígido contém $2\\ \\text{kg}$ de ar, que é aquecido de $300\\ \\text{K}$ para $400\\ \\text{K}$. Use $c_v = 0{,}72\\ \\text{kJ/kg}{\\cdot}\\text{K}$ e $c_p = 1{,}00\\ \\text{kJ/kg}{\\cdot}\\text{K}$. Qual é o calor transferido?","alternativas":["$Q = +144\\ \\text{kJ}$","$Q = -144\\ \\text{kJ}$","$Q = +200\\ \\text{kJ}$","$Q = +0{,}144\\ \\text{kJ}$"],"correta":0,"dica":"Tanque rígido: $W = 0$. Qual calor específico descreve $\\Delta u$?","explicacao":"$Q = \\Delta U = m c_v \\Delta T = 2 \\times 0{,}72 \\times 100 = 144\\ \\text{kJ}$, positivo porque entra. Usar $c_p$ (200 kJ) seria tratar o processo como se fosse a pressão constante."},{"n":10,"fase":"facil","cap":"cap. 6","enunciado":"Uma câmara de mistura em regime permanente recebe $2\\ \\text{kg/s}$ por uma entrada e $3\\ \\text{kg/s}$ por outra. O tubo de saída tem área $A = 0{,}005\\ \\text{m}^2$ e o fluido sai com $v = 0{,}001\\ \\text{m}^3/\\text{kg}$. Qual é a velocidade na saída?","alternativas":["$0{,}6\\ \\text{m/s}$","$0{,}2\\ \\text{m/s}$","$1{,}0\\ \\text{m/s}$","$0{,}4\\ \\text{m/s}$"],"correta":2,"dica":"Primeiro o balanço de massa ($\\dot m_s = ?$), depois $\\dot m = AV/v$.","explicacao":"$\\dot m_s = 2 + 3 = 5\\ \\text{kg/s}$ e $V = \\dot m v / A = 5 \\times 0{,}001 / 0{,}005 = 1{,}0\\ \\text{m/s}$. As outras opções vêm de subtrair as vazões ou usar só uma das entradas."},{"n":11,"fase":"media","cap":"cap. 5","enunciado":"Um chip de silício de $5\\ \\text{mm}$ de lado e $1\\ \\text{mm}$ de espessura está inserido num substrato cerâmico. Em regime permanente, recebe potência elétrica de $0{,}225\\ \\text{W}$. Sua face superior está exposta a um refrigerante a $20\\ ^\\circ\\text{C}$, com $h = 150\\ \\text{W/m}^2\\text{K}$; a condução para o substrato é desprezível. Qual é a temperatura da superfície do chip?","alternativas":["$60\\ ^\\circ\\text{C}$","$20{,}06\\ ^\\circ\\text{C}$","$320\\ ^\\circ\\text{C}$","$80\\ ^\\circ\\text{C}$"],"correta":3,"dica":"Em regime permanente toda a potência elétrica sai por convecção pela face superior: $\\dot W_{el} = hA(T_s - T_\\infty)$. Qual é a área dessa face, em $\\text{m}^2$?","explicacao":"$A = (0{,}005)^2 = 25 \\times 10^{-6}\\ \\text{m}^2$, então $\\Delta T = 0{,}225/(150 \\times 25 \\times 10^{-6}) = 60\\ \\text{K}$ e $T_s = 20 + 60 = 80\\ ^\\circ\\text{C}$. 60 °C é só o $\\Delta T$; 320 °C usa a face lateral."},{"n":12,"fase":"media","cap":"cap. 6","enunciado":"Vapor d'água entra num bocal adiabático a $60\\ \\text{m/s}$ com $h_1 = 3051{,}6\\ \\text{kJ/kg}$ ($u_1 = 2793{,}6\\ \\text{kJ/kg}$) e sai com $h_2 = 2957{,}6\\ \\text{kJ/kg}$ ($u_2 = 2721{,}2\\ \\text{kJ/kg}$). Qual é a velocidade de saída?","alternativas":["$61{,}5\\ \\text{m/s}$","$437{,}7\\ \\text{m/s}$","$385{,}2\\ \\text{m/s}$","$312{,}4\\ \\text{m/s}$"],"correta":1,"dica":"Bocal: sem $\\dot Q$, sem $\\dot W$. A 1ª lei fica $h_1 + V_1^2/2 = h_2 + V_2^2/2$. Cuidado com as unidades de $h$.","explicacao":"$V_2 = \\sqrt{V_1^2 + 2(h_1 - h_2)} = \\sqrt{60^2 + 2 \\times 94{,}0 \\times 1000} = 437{,}7\\ \\text{m/s}$; o fator 1000 converte kJ/kg em J/kg. Usar $u$ em vez de $h$ dá 385,2 m/s e esquecer o 1000 dá 61,5 m/s."},{"n":13,"fase":"media","cap":"cap. 5","enunciado":"Um automóvel de $1275\\ \\text{kg}$ a $60\\ \\text{km/h}$ freia até $20\\ \\text{km/h}$. As pastilhas têm $0{,}5\\ \\text{kg}$ ($c = 1{,}1\\ \\text{kJ/kg}{\\cdot}\\text{K}$) e os discos $4{,}0\\ \\text{kg}$ ($c = 0{,}46\\ \\text{kJ/kg}{\\cdot}\\text{K}$). Admitindo que toda a energia cinética perdida aquece pastilhas e discos, à mesma temperatura, qual é o aumento de temperatura?","alternativas":["$74{,}1\\ ^\\circ\\text{C}$","$853{,}6\\ ^\\circ\\text{C}$","$65{,}9\\ ^\\circ\\text{C}$","$0{,}066\\ ^\\circ\\text{C}$"],"correta":2,"dica":"Calcule $\\Delta EC$ com as velocidades em m/s e iguale a $(m_p c_p + m_d c_d)\\,\\Delta T$.","explicacao":"$\\Delta EC = \\tfrac12 \\cdot 1275 \\cdot (16{,}67^2 - 5{,}56^2) = 157{,}4\\ \\text{kJ}$ e $\\sum mc = 0{,}55 + 1{,}84 = 2{,}39\\ \\text{kJ/K}$, logo $\\Delta T = 65{,}9\\ ^\\circ\\text{C}$. Ignorar a velocidade final dá 74,1 °C."},{"n":14,"fase":"media","cap":"cap. 6","enunciado":"Uma caldeira é alimentada com $5000\\ \\text{kg/h}$ de água a $5\\ \\text{MPa}$ e $20\\ ^\\circ\\text{C}$ ($v = 0{,}0009996\\ \\text{m}^3/\\text{kg}$) e descarrega vapor a $4{,}5\\ \\text{MPa}$ e $450\\ ^\\circ\\text{C}$ ($v = 0{,}07076\\ \\text{m}^3/\\text{kg}$; a $4{,}5\\ \\text{MPa}$, o vapor saturado tem $v_g = 0{,}04406\\ \\text{m}^3/\\text{kg}$). Em regime permanente, qual deve ser a área da seção de descarga para que a velocidade seja $20\\ \\text{m/s}$?","alternativas":["$\\approx 49\\ \\text{cm}^2$","$\\approx 31\\ \\text{cm}^2$","$\\approx 0{,}69\\ \\text{cm}^2$","$\\approx 1{,}8 \\times 10^5\\ \\text{cm}^2$"],"correta":0,"dica":"Converta a vazão para kg/s e use $A = \\dot m v / V$ com o $v$ do estado de saída.","explicacao":"$\\dot m = 5000/3600 = 1{,}389\\ \\text{kg/s}$ e $A = 1{,}389 \\times 0{,}07076/20 = 4{,}91 \\times 10^{-3}\\ \\text{m}^2 \\approx 49\\ \\text{cm}^2$ (a lista arredonda para 50 cm²). O vapor está superaquecido, então $v_g$ não serve; 0,69 cm² é a área da entrada."},{"n":15,"fase":"media","cap":"cap. 5","enunciado":"Ar num cilindro-pistão é comprimido num processo politrópico quase-estático com $n = 1{,}3$, de $P_1 = 100\\ \\text{kPa}$ e $V_1 = 0{,}1\\ \\text{m}^3$ até $V_2 = 0{,}02\\ \\text{m}^3$. Qual é o trabalho realizado pelo ar (convenção: $W > 0$ quando o sistema realiza trabalho)?","alternativas":["$W = -16{,}1\\ \\text{kJ}$","$W = -20{,}7\\ \\text{kJ}$","$W = -8{,}0\\ \\text{kJ}$","$W = +20{,}7\\ \\text{kJ}$"],"correta":1,"dica":"Ache $P_2$ por $P_1V_1^n = P_2V_2^n$ e use $W = \\dfrac{P_2V_2 - P_1V_1}{1 - n}$.","explicacao":"$P_2 = 100 \\times 5^{1{,}3} = 810{,}3\\ \\text{kPa}$, e $W = (810{,}3 \\times 0{,}02 - 100 \\times 0{,}1)/(1 - 1{,}3) = -20{,}7\\ \\text{kJ}$; negativo porque é compressão. −16,1 kJ é a fórmula isotérmica e −8,0 kJ supõe pressão constante."},{"n":16,"fase":"media","cap":"cap. 6","enunciado":"Numa câmara de mistura adiabática a $200\\ \\text{kPa}$, vapor a $200\\ ^\\circ\\text{C}$ ($h = 2870{,}7$; $u = 2654{,}6\\ \\text{kJ/kg}$) se mistura com água líquida a $20\\ ^\\circ\\text{C}$ ($h = 84{,}1$; $u = 83{,}9\\ \\text{kJ/kg}$). A mistura sai a $80\\ ^\\circ\\text{C}$ ($h = 335{,}1$; $u = 334{,}9\\ \\text{kJ/kg}$). Desprezando EC e EP, qual é a razão $\\dot m_{\\text{água fria}}/\\dot m_{\\text{vapor}}$?","alternativas":["$11{,}10$","$0{,}099$","$9{,}24$","$10{,}10$"],"correta":3,"dica":"Escreva $\\dot m_v h_v + \\dot m_a h_a = (\\dot m_v + \\dot m_a) h_s$ e isole $\\dot m_a/\\dot m_v$.","explicacao":"$\\dot m_a/\\dot m_v = (h_v - h_s)/(h_s - h_a) = (2870{,}7 - 335{,}1)/(335{,}1 - 84{,}1) = 10{,}10$. Com $u$ no lugar de $h$ dá 9,24; 11,10 é a razão entre a vazão total e a de vapor."},{"n":17,"fase":"media","cap":"cap. 5","enunciado":"Um tanque rígido e isolado de $0{,}25\\ \\text{m}^3$ contém vapor saturado a $100\\ ^\\circ\\text{C}$ ($v_g = 1{,}6729\\ \\text{m}^3/\\text{kg}$, $u_g = 2506{,}5$, $h_g = 2676{,}1\\ \\text{kJ/kg}$). A água é agitada por uma hélice até $200\\ \\text{kPa}$. No estado final ($200\\ \\text{kPa}$, mesmo $v$), $T \\approx 453\\ ^\\circ\\text{C}$, $u = 3052{,}4$ e $h = 3387{,}0\\ \\text{kJ/kg}$; a $200\\ \\text{kPa}$, $v_g = 0{,}8857\\ \\text{m}^3/\\text{kg}$. Qual é o trabalho $W$ (convenção $Q - W = \\Delta U$)?","alternativas":["$W = -81{,}6\\ \\text{kJ}$","$W = +81{,}6\\ \\text{kJ}$","$W = -106{,}2\\ \\text{kJ}$","$W = -154{,}1\\ \\text{kJ}$"],"correta":0,"dica":"Isolado: $Q = 0$. Rígido: $v$ constante, então a massa sai do estado inicial. O trabalho de hélice entra no sistema.","explicacao":"$m = 0{,}25/1{,}6729 = 0{,}1494\\ \\text{kg}$ e $W = -m(u_2 - u_1) = -0{,}1494 \\times 545{,}9 = -81{,}6\\ \\text{kJ}$ (a lista dá o módulo, 81,58 kJ). Negativo porque o trabalho é feito sobre a água; sistema fechado usa $u$, não $h$."},{"n":18,"fase":"media","cap":"cap. 6","enunciado":"Uma turbina recebe $2\\ \\text{kg/s}$ de vapor a $1\\ \\text{MPa}$ e $350\\ ^\\circ\\text{C}$ ($h = 3157{,}7$; $u = 2875{,}2\\ \\text{kJ/kg}$) a $15\\ \\text{m/s}$ e descarrega vapor saturado a $100\\ \\text{kPa}$ ($h_g = 2675{,}5$; $u_g = 2506{,}1\\ \\text{kJ/kg}$) com velocidade desprezível. Qual é a potência gerada, em regime permanente e adiabática?","alternativas":["$738{,}4\\ \\text{kW}$","$1189{,}4\\ \\text{kW}$","$964{,}6\\ \\text{kW}$","$-964{,}6\\ \\text{kW}$"],"correta":2,"dica":"$\\dot W = \\dot m\\,[(h_1 + V_1^2/2) - h_2]$. Em que unidade está $V_1^2/2$?","explicacao":"$w = 3157{,}7 - 2675{,}5 + 15^2/2000 = 482{,}3\\ \\text{kJ/kg}$ e $\\dot W = 2 \\times 482{,}3 = 964{,}6\\ \\text{kW}$, positivo porque a turbina produz trabalho. Usar $u$ dá 738,4 kW; esquecer o /1000 na EC dá 1189,4 kW."},{"n":19,"fase":"media","cap":"cap. 5","enunciado":"Uma pessoa em repouso transfere cerca de $400\\ \\text{kJ/h}$ de calor ao ambiente. A ventilação de um auditório fechado de $1500\\ \\text{m}^3$, com 100 pessoas, falha. O ar está inicialmente a $300\\ \\text{K}$ e $101\\ \\text{kPa}$ ($R = 0{,}287\\ \\text{kJ/kg}{\\cdot}\\text{K}$, $c_v = 0{,}717$, $c_p = 1{,}004\\ \\text{kJ/kg}{\\cdot}\\text{K}$). Qual é a taxa de aumento da temperatura do ar?","alternativas":["$0{,}38\\ \\text{K/min}$","$31{,}7\\ \\text{K/min}$","$528\\ \\text{K/min}$","$0{,}53\\ \\text{K/min}$"],"correta":3,"dica":"Ache a massa de ar por $PV = mRT$ e use $\\dot Q = m c_v\\, dT/dt$ (volume fixo). Converta tudo para minutos.","explicacao":"$m = 101 \\times 1500/(0{,}287 \\times 300) = 1760\\ \\text{kg}$ e $\\dot Q = 100 \\times 400/60 = 666{,}7\\ \\text{kJ/min}$, logo $dT/dt = 666{,}7/(1760 \\times 0{,}717) = 0{,}53\\ \\text{K/min}$. O auditório tem volume fixo, então vale $c_v$, não $c_p$."},{"n":20,"fase":"media","cap":"cap. 6","enunciado":"Água a $600\\ \\text{kPa}$ e $10\\ ^\\circ\\text{C}$ ($v = 0{,}001\\ \\text{m}^3/\\text{kg}$) escoa num ramal $5\\ \\text{m}$ abaixo do chão. Uma bomba a eleva até o andar superior, $150\\ \\text{m}$ acima do chão, onde a pressão deve ser $200\\ \\text{kPa}$ com vazão de $10\\ \\text{kg/s}$. Escoamento isotérmico, incompressível, EC desprezível, $g = 9{,}81\\ \\text{m/s}^2$. Qual é a potência necessária para acionar a bomba (em módulo)?","alternativas":["$10{,}7\\ \\text{kW}$","$11{,}2\\ \\text{kW}$","$19{,}2\\ \\text{kW}$","$4{,}0\\ \\text{kW}$"],"correta":1,"dica":"Líquido incompressível e isotérmico: $\\Delta h = v\\,\\Delta P$. Some a variação de energia potencial e conte o desnível total.","explicacao":"$-w = v(P_2 - P_1) + g\\Delta z = 0{,}001(200 - 600) + 9{,}81 \\times 155/1000 = 1{,}121\\ \\text{kJ/kg}$, então $|\\dot W| = 10 \\times 1{,}121 = 11{,}2\\ \\text{kW}$. O desnível é $155\\ \\text{m}$ (5 abaixo + 150 acima); ignorar os 5 m dá 10,7 kW."},{"n":21,"fase":"dificil","cap":"cap. 5","enunciado":"Numa pistola de ar comprimido, o reservatório tem $1\\ \\text{cm}^3$ de ar a $27\\ ^\\circ\\text{C}$ e $1\\ \\text{MPa}$. O projétil, de $15\\ \\text{g}$, funciona como pistão travado por um pino. No disparo, o ar se expande isotermicamente e, quando o projétil deixa o cano, a pressão do ar é $0{,}1\\ \\text{MPa}$. A atmosfera está a $101\\ \\text{kPa}$. Qual é a velocidade do projétil na saída do cano?","alternativas":["$0{,}43\\ \\text{m/s}$","$17{,}52\\ \\text{m/s}$","$13{,}63\\ \\text{m/s}$","$13{,}13\\ \\text{m/s}$"],"correta":2,"dica":"Ache $V_2$ pela isoterma, calcule $W_{ar} = P_1V_1\\ln(V_2/V_1)$, desconte o trabalho gasto empurrando a atmosfera e converta o resto em energia cinética.","explicacao":"$V_2 = 10\\ \\text{cm}^3$, $W_{ar} = 10^6 \\cdot 10^{-6} \\ln 10 = 2{,}303\\ \\text{J}$ e $W_{atm} = 101 \\times 10^3 \\times 9 \\times 10^{-6} = 0{,}909\\ \\text{J}$, sobrando $1{,}394\\ \\text{J}$; $V = \\sqrt{2 \\times 1{,}394/0{,}015} = 13{,}63\\ \\text{m/s}$. Esquecer a atmosfera dá 17,52 m/s."},{"n":22,"fase":"dificil","cap":"cap. 6","enunciado":"Um difusor isolado recebe, em regime permanente, ar a $200\\ \\text{m/s}$, $300\\ \\text{K}$ e $100\\ \\text{kPa}$. As áreas de entrada e saída são $100\\ \\text{mm}^2$ e $860\\ \\text{mm}^2$, e o ar sai a $20\\ \\text{m/s}$. Use gás ideal com $R = 0{,}287$, $c_p = 1{,}004$ e $c_v = 0{,}717\\ \\text{kJ/kg}{\\cdot}\\text{K}$. Qual é a pressão na saída?","alternativas":["$123{,}9\\ \\text{kPa}$","$116{,}3\\ \\text{kPa}$","$127{,}0\\ \\text{kPa}$","$108{,}6\\ \\text{kPa}$"],"correta":0,"dica":"Três passos: $\\dot m$ pela entrada; $T_2$ pela 1ª lei com EC; $P_2 = \\dot m R T_2/(A_2V_2)$.","explicacao":"$\\dot m = 100 \\times 10^{-6} \\times 200/(0{,}287 \\times 300) = 0{,}02323\\ \\text{kg/s}$, $T_2 = 300 + (200^2 - 20^2)/(2 \\times 1004) = 319{,}7\\ \\text{K}$ e $P_2 = 0{,}02323 \\times 0{,}287 \\times 319{,}7/(8{,}6 \\times 10^{-4} \\times 20) = 123{,}9\\ \\text{kPa}$. Usar $c_v$ (u no lugar de h) dá 127,0 kPa."},{"n":23,"fase":"dificil","cap":"cap. 5","enunciado":"Um cilindro-pistão contém $0{,}2\\ \\text{kg}$ de ar a $100\\ \\text{kPa}$ e $300\\ \\text{K}$. O pistão só se move com $100\\ \\text{kPa}$. Calor é fornecido: o pistão sobe até encostar nos esbarros, quando o volume é o dobro do inicial; o aquecimento continua com o pistão travado até $250\\ \\text{kPa}$. Com $R = 0{,}287$, $c_v = 0{,}717$ e $c_p = 1{,}004\\ \\text{kJ/kg}{\\cdot}\\text{K}$, qual é o calor total fornecido?","alternativas":["$215{,}1\\ \\text{kJ}$","$154{,}9\\ \\text{kJ}$","$241{,}0\\ \\text{kJ}$","$189{,}3\\ \\text{kJ}$"],"correta":3,"dica":"Ache $T_2$ (P constante, V dobra) e $T_3$ (V constante, P sobe). Só a primeira etapa tem trabalho.","explicacao":"$T_2 = 600\\ \\text{K}$ e $T_3 = 600 \\times 2{,}5 = 1500\\ \\text{K}$; $W = P_1(V_2 - V_1) = mR(T_2 - T_1) = 17{,}2\\ \\text{kJ}$ e $\\Delta U = 0{,}2 \\times 0{,}717 \\times 1200 = 172{,}1\\ \\text{kJ}$, logo $Q = 189{,}3\\ \\text{kJ}$. Usar $c_p$ no processo todo supõe pressão constante do início ao fim."},{"n":24,"fase":"dificil","cap":"cap. 6","enunciado":"Uma turbina adiabática produz $5\\ \\text{MW}$. Vapor entra a $3\\ \\text{MPa}$ e $400\\ ^\\circ\\text{C}$ ($h = 3231{,}7\\ \\text{kJ/kg}$) e sai a $50\\ \\text{kPa}$ com título $0{,}95$ ($h_f = 340{,}5$, $h_{fg} = 2304{,}7$, $h_g = 2645{,}2\\ \\text{kJ/kg}$). O vapor vai a um condensador e sai como líquido saturado a $50\\ \\text{kPa}$. A água de resfriamento entra a $15\\ ^\\circ\\text{C}$ ($h = 63{,}0$) e sai a $25\\ ^\\circ\\text{C}$ ($h = 104{,}9\\ \\text{kJ/kg}$). Desprezando EC e EP, qual é a vazão de água de resfriamento?","alternativas":["$468{,}9\\ \\text{kg/s}$","$372{,}3\\ \\text{kg/s}$","$0{,}372\\ \\text{kg/s}$","$491{,}7\\ \\text{kg/s}$"],"correta":1,"dica":"Sequência: $h$ na saída da turbina pela mistura, vazão de vapor por $\\dot W = \\dot m(h_1 - h_2)$, calor do condensador $\\dot m(h_2 - h_f)$ e, por fim, a água de resfriamento.","explicacao":"$h_2 = 340{,}5 + 0{,}95 \\times 2304{,}7 = 2530{,}0$, $\\dot m_v = 5000/701{,}7 = 7{,}125\\ \\text{kg/s}$, $\\dot Q_c = 7{,}125 \\times 2189{,}5 = 15{,}6\\ \\text{MW}$ e $\\dot m_a = 15600/41{,}9 = 372{,}3\\ \\text{kg/s}$. Usar $h_g$ em vez do $h$ da mistura dá 468,9 kg/s."},{"n":25,"fase":"dificil","cap":"cap. 5","enunciado":"Um reator de $1\\ \\text{m}^3$ contém água a $20\\ \\text{MPa}$ e $360\\ ^\\circ\\text{C}$ (líquido comprimido: $v = 0{,}001823\\ \\text{m}^3/\\text{kg}$, $u = 1702{,}8$, $h = 1739{,}3\\ \\text{kJ/kg}$) dentro de um vaso de contenção isolado e inicialmente evacuado. O reator se rompe. A $200\\ \\text{kPa}$: $v_f = 0{,}001061$, $v_g = 0{,}88573\\ \\text{m}^3/\\text{kg}$, $u_f = 504{,}47$, $u_{fg} = 2025{,}02$, $h_f = 504{,}68$, $h_{fg} = 2201{,}96\\ \\text{kJ/kg}$. Qual deve ser o volume do vaso para que a pressão final seja $200\\ \\text{kPa}$?","alternativas":["$287{,}7\\ \\text{m}^3$","$485{,}9\\ \\text{m}^3$","$272{,}7\\ \\text{m}^3$","$264{,}7\\ \\text{m}^3$"],"correta":0,"dica":"Expansão contra o vácuo num vaso isolado: $Q = 0$ e $W = 0$. Então qual propriedade se conserva? Com ela e $P_2$, ache o título e $v_2$.","explicacao":"$m = 1/0{,}001823 = 548{,}5\\ \\text{kg}$; $u_2 = u_1$ dá $x_2 = (1702{,}8 - 504{,}47)/2025{,}02 = 0{,}5918$ e $v_2 = 0{,}5246\\ \\text{m}^3/\\text{kg}$, logo $V = 287{,}7\\ \\text{m}^3$. Usar $v_g$ (485,9) ignora que o estado final é mistura."},{"n":26,"fase":"dificil","cap":"cap. 6","enunciado":"Um tanque rígido de aço de $1\\ \\text{m}^3$ e $40\\ \\text{kg}$ ($c_{\\text{aço}} = 0{,}46\\ \\text{kJ/kg}{\\cdot}\\text{K}$) contém ar a $500\\ \\text{kPa}$ e $20\\ ^\\circ\\text{C}$. Ele é ligado a uma linha de ar a $2\\ \\text{MPa}$ e $20\\ ^\\circ\\text{C}$, e a válvula é fechada quando a pressão interna atinge $1{,}5\\ \\text{MPa}$. Tanque e ar estão sempre em equilíbrio térmico e a temperatura final é $35\\ ^\\circ\\text{C}$. Com $R = 0{,}287$, $c_v = 0{,}717$ e $c_p = 1{,}004\\ \\text{kJ/kg}{\\cdot}\\text{K}$ (e $u = c_vT$, $h = c_pT$ com $T$ em K), qual é o calor transferido para o conjunto tanque + ar ($Q > 0$ entrando)?","alternativas":["$Q \\approx +469\\ \\text{kJ}$","$Q \\approx -745\\ \\text{kJ}$","$Q \\approx -469\\ \\text{kJ}$","$Q \\approx +458\\ \\text{kJ}$"],"correta":2,"dica":"Ache $m_1$, $m_2$ e $m_e = m_2 - m_1$. Balanço: $Q = m_2u_2 - m_1u_1 - m_e h_e + m_{\\text{aço}}c\\,\\Delta T$.","explicacao":"$m_1 = 5{,}943$ e $m_2 = 16{,}96\\ \\text{kg}$ ($m_e = 11{,}02$); o ar dá $-744{,}6\\ \\text{kJ}$ e o aço absorve $40 \\times 0{,}46 \\times 15 = 276\\ \\text{kJ}$, logo $Q \\approx -469\\ \\text{kJ}$: o conjunto rejeita calor (a lista dá o módulo). A corrente que entra carrega $h$, não $u$."},{"n":27,"fase":"dificil","cap":"cap. 5","enunciado":"Um cilindro vertical com seção $0{,}1\\ \\text{m}^2$ e altura $10\\ \\text{m}$ tem um pistão fino de massa desprezível. Acima dele há água a $20\\ ^\\circ\\text{C}$ ($v = 0{,}001002\\ \\text{m}^3/\\text{kg}$), aberta à atmosfera ($101{,}325\\ \\text{kPa}$), e abaixo $0{,}3\\ \\text{m}^3$ de ar a $300\\ \\text{K}$. O ar é aquecido, o pistão sobe e a água transborda até o pistão atingir o topo. Dados do ar ($R = 0{,}287\\ \\text{kJ/kg}{\\cdot}\\text{K}$), $T$ [K]: $u$, $h$ [kJ/kg] — 300: 214,36, 300,47; 550: 396,86, 554,75; 600: 434,78, 607,32. $g = 9{,}81\\ \\text{m/s}^2$. Qual é o calor transferido ao ar?","alternativas":["$\\approx 34\\ \\text{kJ}$","$\\approx 224\\ \\text{kJ}$","$\\approx 274\\ \\text{kJ}$","$\\approx 129\\ \\text{kJ}$"],"correta":1,"dica":"A pressão no ar cai linearmente com $V$ à medida que a coluna d'água diminui: $W$ é a área de um trapézio. Depois ache $T_2$ por $PV = mRT$ e interpole $u_2$.","explicacao":"$P_1 = 101{,}3 + 9{,}81 \\times 7/0{,}001002/1000 = 169{,}9\\ \\text{kPa}$ e $W = \\tfrac12(169{,}9 + 101{,}3) \\times 0{,}7 = 94{,}9\\ \\text{kJ}$; $m = 0{,}592\\ \\text{kg}$, $T_2 = 596{,}5\\ \\text{K}$ e $u_2 = 432{,}1$, então $\\Delta U = 128{,}9\\ \\text{kJ}$ e $Q \\approx 224\\ \\text{kJ}$. Com $h$ no lugar de $u$ dá 274 kJ."},{"n":28,"fase":"dificil","cap":"cap. 6","enunciado":"Um tanque rígido de $0{,}5\\ \\text{m}^3$ contém vapor a $200\\ \\text{kPa}$ e $200\\ ^\\circ\\text{C}$ ($v = 1{,}0805\\ \\text{m}^3/\\text{kg}$, $u = 2654{,}6\\ \\text{kJ/kg}$). Ele é ligado a uma linha de vapor a $1\\ \\text{MPa}$ e $300\\ ^\\circ\\text{C}$ ($v = 0{,}2580\\ \\text{m}^3/\\text{kg}$, $u = 2793{,}6$, $h = 3051{,}6\\ \\text{kJ/kg}$). A válvula é aberta e fechada quando o tanque atinge $1\\ \\text{MPa}$ e $300\\ ^\\circ\\text{C}$. Qual é o calor trocado pelo tanque ($Q > 0$ entrando)?","alternativas":["$Q \\approx -500\\ \\text{kJ}$","$Q \\approx +8687\\ \\text{kJ}$","$Q \\approx +64\\ \\text{kJ}$","$Q \\approx -316\\ \\text{kJ}$"],"correta":3,"dica":"Estado final igual ao da linha, mas o que entra carrega $h$ e o que fica armazenado é $u$. Ache $m_1$, $m_2$, $m_e$ e aplique $Q = m_2u_2 - m_1u_1 - m_e h_e$.","explicacao":"$m_1 = 0{,}4627$, $m_2 = 1{,}938$ e $m_e = 1{,}475\\ \\text{kg}$; $Q = 1{,}938 \\times 2793{,}6 - 0{,}4627 \\times 2654{,}6 - 1{,}475 \\times 3051{,}6 \\approx -316\\ \\text{kJ}$. É preciso retirar calor, porque sem ele o trabalho de fluxo aqueceria o tanque acima de 300 °C."},{"n":29,"fase":"dificil","cap":"cap. 5","enunciado":"Um cilindro-pistão contém $2\\ \\text{kg}$ de água a $200\\ \\text{kPa}$ com título $0{,}2$; o pistão flutua a $200\\ \\text{kPa}$. Calor é fornecido até o pistão encostar nos esbarros, com volume igual a 3 vezes o inicial, e o aquecimento continua até $600\\ \\text{kPa}$. A $200\\ \\text{kPa}$: $v_f = 0{,}001061$, $v_g = 0{,}88573\\ \\text{m}^3/\\text{kg}$, $u_f = 504{,}47$, $u_{fg} = 2025{,}02$, $h_f = 504{,}68$, $h_{fg} = 2201{,}96\\ \\text{kJ/kg}$. A $600\\ \\text{kPa}$: $v_g = 0{,}3157$; superaquecido a $400\\ ^\\circ\\text{C}$: $v = 0{,}5137$, $u = 2962{,}5$, $h = 3270{,}8$; a $500\\ ^\\circ\\text{C}$: $v = 0{,}5920$, $u = 3128{,}2$, $h = 3483{,}4$. Qual é o calor total fornecido?","alternativas":["$\\approx 4049\\ \\text{kJ}$","$\\approx 4619\\ \\text{kJ}$","$\\approx 4334\\ \\text{kJ}$","$\\approx 4762\\ \\text{kJ}$"],"correta":2,"dica":"Ache $v_1$ e $u_1$ pelo título; $v_3 = 3v_1$ a 600 kPa: compare com $v_g$ e interpole $u_3$ em $v$. O trabalho só ocorre na etapa a 200 kPa.","explicacao":"$v_1 = 0{,}1780$ e $u_1 = 909{,}5$; $v_3 = 0{,}5340 > v_g$, então é superaquecido e $u_3 \\approx 3005{,}4\\ \\text{kJ/kg}$ ($T \\approx 426\\ ^\\circ\\text{C}$). $W = 200 \\times 2 \\times 0{,}356 = 142{,}4\\ \\text{kJ}$ e $Q = 2(3005{,}4 - 909{,}5) + 142{,}4 \\approx 4334\\ \\text{kJ}$. Calcular $W$ com 600 kPa dá 4619 kJ."},{"n":30,"fase":"dificil","cap":"cap. 6","enunciado":"Um tanque de $200\\ \\text{L}$ contém água a $100\\ \\text{kPa}$ com título $1\\%$. Calor é transferido e, quando a pressão atinge $2\\ \\text{MPa}$, a válvula de segurança abre e deixa sair vapor saturado a $2\\ \\text{MPa}$. O processo continua a $2\\ \\text{MPa}$ até o título ser $0{,}9$. A $100\\ \\text{kPa}$: $v_f = 0{,}001043$, $v_g = 1{,}69400\\ \\text{m}^3/\\text{kg}$, $u_f = 417{,}33$, $u_{fg} = 2088{,}72\\ \\text{kJ/kg}$. A $2\\ \\text{MPa}$: $v_f = 0{,}001177$, $v_g = 0{,}09963\\ \\text{m}^3/\\text{kg}$, $u_f = 906{,}42$, $u_{fg} = 1693{,}84$, $u_g = 2600{,}26$, $h_g = 2799{,}51\\ \\text{kJ/kg}$. Qual é o calor total transferido à água?","alternativas":["$25{,}46\\ \\text{MJ}$","$25{,}46\\ \\text{kJ}$","$23{,}68\\ \\text{MJ}$","$-24{,}38\\ \\text{MJ}$"],"correta":0,"dica":"Ache $m_1$ e $m_2$ pelos títulos ($m = V/v$), $m_s = m_1 - m_2$, e aplique $Q = m_2u_2 - m_1u_1 + m_s h_s$, com o vapor saindo saturado.","explicacao":"$m_1 = 11{,}13$ e $m_2 = 2{,}228\\ \\text{kg}$, logo $m_s = 8{,}90\\ \\text{kg}$; $Q = 2{,}228 \\times 2430{,}9 - 11{,}13 \\times 438{,}2 + 8{,}90 \\times 2799{,}5 = 25{,}46\\ \\text{MJ}$. A massa que sai carrega $h_g$; usar $u_g$ dá 23,68 MJ."}];
+const FASES={facil:{nome:"fáceis",premio:100},media:{nome:"intermediárias",premio:250},dificil:{nome:"difíceis",premio:600}};
+const INICIAL=1000, TOTAL=QUESTOES.length, AVATARES=['🎩','🦁','🔥','🐍','🎲','👑','🐉','🧨','🃏','🦅','💎','🐺'];
+const premioDe=q=>FASES[q.fase].premio, penalDe=q=>Math.round(premioDe(q)/3), dicaDe=q=>Math.round(premioDe(q)*.25), elimDe=q=>Math.round(premioDe(q)*.4);
+const bonusDe=s=>Math.min(2,1+.2*s);
+
+/* ================= estado ================= */
+let perfil=null,stats=null,partida=null,pote=0,som=true,musica=true,girando=false;
+const $=id=>document.getElementById(id), palco=$('palco');
+const fmt=n=>Math.round(n).toLocaleString('pt-BR');
+const slug=s=>s.toLowerCase().normalize('NFD').replace(/[^a-z0-9]/g,'').slice(0,24);
+function tex(el){try{renderMathInElement(el,{delimiters:[{left:'$',right:'$',display:false}],throwOnError:false});}catch(e){}}
+const q=()=>QUESTOES[partida.idx];
+
+/* ================= dados =================
+   Única camada que fala com armazenamento. Para hospedar fora do Claude,
+   troque estas funções por Supabase; o resto do jogo não muda. */
+const KP='partida:'+RODADA.id;
+/* >>> COLE AQUI os dois valores do seu projeto Supabase (Settings → API) <<< */
+const SUPABASE_URL="https://ujjoogmwkyeqiolixsmg.supabase.co";
+const SUPABASE_KEY="sb_publishable_ASp-Mz1uvWXSEc0NpQ3d6g_30YAiHoP";
+const sb=(path,opt={})=>fetch(SUPABASE_URL+'/rest/v1/'+path,{...opt,headers:{apikey:SUPABASE_KEY,Authorization:'Bearer '+SUPABASE_KEY,'Content-Type':'application/json',...(opt.headers||{})}});
+const LS={get(k){try{const v=localStorage.getItem(k);return v?JSON.parse(v):null;}catch(e){return null;}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}},del(k){try{localStorage.removeItem(k);}catch(e){}}};
+const Dados={
+  async lerPerfil(){return LS.get('perfil');}, async salvarPerfil(p){LS.set('perfil',p);},
+  async lerStats(){if(!perfil)return null;try{const r=await sb(`ranking?rodada=eq.${RODADA.id}&chave=eq.${slug(perfil.nome)}&select=primeira,melhor,partidas`);const a=await r.json();return Array.isArray(a)&&a[0]?a[0]:null;}catch(e){return null;}},
+  async salvarStats(s){if(!perfil)return;try{await sb('ranking',{method:'POST',headers:{Prefer:'resolution=merge-duplicates'},body:JSON.stringify({rodada:RODADA.id,chave:slug(perfil.nome),nome:perfil.nome,av:perfil.av,primeira:s.primeira,melhor:s.melhor,partidas:s.partidas,atualizado:new Date().toISOString()})});}catch(e){}},
+  async lerPartida(){return LS.get(KP);}, async salvarPartida(p){LS.set(KP,p);}, async apagarPartida(){LS.del(KP);},
+  async publicar(){},
+  async ranking(){try{const r=await sb(`ranking?rodada=eq.${RODADA.id}&primeira=not.is.null&select=nome,av,primeira,melhor,partidas&order=primeira.desc,melhor.desc`);const a=await r.json();return Array.isArray(a)?a:[];}catch(e){return [];}}
+};
+
+/* ================= áudio ================= */
+let ac=null;const ctx=()=>{if(!ac)ac=new (window.AudioContext||window.webkitAudioContext)();if(ac.state==='suspended')ac.resume();return ac;};
+function bip(f,dur,tipo='square',vol=.05){if(!som)return;try{const c=ctx(),o=c.createOscillator(),g=c.createGain(),t0=c.currentTime;o.type=tipo;o.frequency.value=f;g.gain.setValueAtTime(vol,t0);g.gain.exponentialRampToValueAtTime(.0001,t0+dur);o.connect(g);g.connect(c.destination);o.start(t0);o.stop(t0+dur);}catch(e){}}
+function fanfarra(){[523,659,784,1047,1319,1568].forEach((f,i)=>setTimeout(()=>bip(f,.25,'triangle',.1),i*80));}
+/* moeda: ping de seno com harmônico, decai rápido */
+function moeda(f,t0,vol=.09){if(!som)return;try{const c=ctx();[1,2.7].forEach((h,i)=>{const o=c.createOscillator(),g=c.createGain();o.type='sine';o.frequency.value=f*h;g.gain.setValueAtTime(vol/(i+1),t0);g.gain.exponentialRampToValueAtTime(.0001,t0+.35);o.connect(g);g.connect(c.destination);o.start(t0);o.stop(t0+.4);});}catch(e){}}
+/* som de acerto: três moedas subindo + acorde curto */
+function premioSom(){if(!som)return;const c=ctx(),t=c.currentTime;[1568,1976,2349].forEach((f,i)=>moeda(f,t+i*.09));[523,659,784].forEach(f=>{try{const o=c.createOscillator(),g=c.createGain();o.type='triangle';o.frequency.value=f;g.gain.setValueAtTime(.05,t+.25);g.gain.exponentialRampToValueAtTime(.0001,t+.9);o.connect(g);g.connect(c.destination);o.start(t+.25);o.stop(t+.95);}catch(e){}});}
+/* jackpot: escala subindo em 16 notas, acorde final com vibrato, chuva de moedas e graves */
+function jackpot(){if(!som)return;const c=ctx(),t=c.currentTime;
+  if(MUS.vol){MUS.vol.gain.cancelScheduledValues(t);MUS.vol.gain.setValueAtTime(MUS.vol.gain.value,t);MUS.vol.gain.linearRampToValueAtTime(.12,t+.1);MUS.vol.gain.linearRampToValueAtTime(.5,t+3.2);}
+  const esc=[60,62,64,65,67,69,71,72,74,76,77,79,81,83,84,88];
+  esc.forEach((n,i)=>{try{const o=c.createOscillator(),g=c.createGain(),tt=t+i*.055;o.type='square';o.frequency.value=N(n);g.gain.setValueAtTime(.045,tt);g.gain.exponentialRampToValueAtTime(.0001,tt+.14);o.connect(g);g.connect(c.destination);o.start(tt);o.stop(tt+.15);}catch(e){}});
+  const t1=t+.95;[72,76,79,84,88].forEach(n=>{try{const o=c.createOscillator(),g=c.createGain(),v=c.createOscillator(),vg=c.createGain();o.type='sawtooth';o.frequency.value=N(n);v.frequency.value=6;vg.gain.value=4;v.connect(vg);vg.connect(o.frequency);g.gain.setValueAtTime(.0001,t1);g.gain.exponentialRampToValueAtTime(.05,t1+.05);g.gain.setValueAtTime(.05,t1+1.2);g.gain.exponentialRampToValueAtTime(.0001,t1+2.2);o.connect(g);g.connect(c.destination);v.start(t1);o.start(t1);o.stop(t1+2.3);v.stop(t1+2.3);}catch(e){}});
+  try{const o=c.createOscillator(),g=c.createGain();o.type='sine';o.frequency.setValueAtTime(110,t1);o.frequency.exponentialRampToValueAtTime(55,t1+.6);g.gain.setValueAtTime(.3,t1);g.gain.exponentialRampToValueAtTime(.0001,t1+.9);o.connect(g);g.connect(c.destination);o.start(t1);o.stop(t1+1);}catch(e){}
+  for(let i=0;i<22;i++)moeda(1400+Math.random()*1600,t1+.1+i*.075+Math.random()*.03,.07);
+}
+function vinheta(){[392,523,659,784].forEach((f,i)=>setTimeout(()=>bip(f,.3,'triangle',.09),i*120));}
+function chiado(){if(!som)return;try{const c=ctx(),len=c.sampleRate*1.1,b=c.createBuffer(1,len,c.sampleRate),d=b.getChannelData(0);for(let i=0;i<len;i++)d[i]=(Math.random()*2-1)*(1-i/len);const s=c.createBufferSource();s.buffer=b;const f=c.createBiquadFilter();f.type='bandpass';f.frequency.value=1400;const g=c.createGain();g.gain.value=.16;s.connect(f);f.connect(g);g.connect(c.destination);s.start();}catch(e){}[400,330,260,180].forEach((f,i)=>setTimeout(()=>bip(f,.3,'sawtooth',.07),i*110));}
+const N=n=>n?440*Math.pow(2,(n-69)/12):0;
+const LOBBY={bpm:112,bass:[45,0,45,0,48,0,45,0,43,0,43,0,41,0,43,0,45,0,45,0,48,0,45,0,40,0,40,0,43,0,43,0],arp:[69,72,76,79,69,72,76,79,67,71,74,79,65,69,72,77,69,72,76,79,69,72,76,79,64,67,71,76,67,71,74,79],kick:[1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,0],hat:[0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,1,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,1]};
+const TENSAO={bpm:150,bass:[45,45,0,45,45,45,0,45,44,44,0,44,44,44,0,44,43,43,0,43,43,43,0,43,42,42,0,42,41,0,40,0],arp:[81,84,87,90,81,84,87,90,80,83,86,89,80,83,86,89,79,82,85,88,79,82,85,88,78,81,84,87,80,84,87,92],kick:[1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,1,1],hat:[1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,1,1,1]};
+const MUS={pat:LOBBY,passo:0,prox:0,timer:null,ligada:false,vol:null};
+function volMus(){if(!MUS.vol){const c=ctx();MUS.vol=c.createGain();MUS.vol.gain.value=.5;MUS.vol.connect(c.destination);}return MUS.vol;}
+function nota(f,t,dur,tipo,vol){const c=ctx(),o=c.createOscillator(),g=c.createGain();o.type=tipo;o.frequency.value=f;g.gain.setValueAtTime(vol,t);g.gain.exponentialRampToValueAtTime(.0001,t+dur);o.connect(g);g.connect(volMus());o.start(t);o.stop(t+dur);}
+function kick(t){const c=ctx(),o=c.createOscillator(),g=c.createGain();o.frequency.setValueAtTime(150,t);o.frequency.exponentialRampToValueAtTime(40,t+.12);g.gain.setValueAtTime(.35,t);g.gain.exponentialRampToValueAtTime(.001,t+.16);o.connect(g);g.connect(volMus());o.start(t);o.stop(t+.17);}
+function hat(t){const c=ctx(),len=c.sampleRate*.04,b=c.createBuffer(1,len,c.sampleRate),d=b.getChannelData(0);for(let i=0;i<len;i++)d[i]=(Math.random()*2-1)*(1-i/len);const s=c.createBufferSource();s.buffer=b;const f=c.createBiquadFilter();f.type='highpass';f.frequency.value=7000;const g=c.createGain();g.gain.value=.12;s.connect(f);f.connect(g);g.connect(volMus());s.start(t);}
+function agendar(){const c=ctx(),p=MUS.pat,dt=60/p.bpm/4;while(MUS.prox<c.currentTime+.12){const i=MUS.passo%32,t=MUS.prox;if(p.bass[i])nota(N(p.bass[i]),t,dt*1.8,'square',.06);if(p.arp[i])nota(N(p.arp[i]),t,dt*1.2,'triangle',.05);if(p.kick[i])kick(t);if(p.hat[i])hat(t);MUS.prox+=dt;MUS.passo++;}}
+function tocar(){if(!musica||MUS.ligada)return;MUS.ligada=true;MUS.prox=ctx().currentTime+.05;MUS.timer=setInterval(agendar,30);}
+function parar(){MUS.ligada=false;clearInterval(MUS.timer);}
+function trocarPat(p){MUS.pat=p;MUS.passo=0;}
+document.addEventListener('pointerdown',()=>{ctx();tocar();});
+
+/* ================= efeitos ================= */
+function estampa(txt,cor){const a=$('aviso');a.textContent=txt;a.style.color=cor;a.classList.remove('on');void a.offsetWidth;a.classList.add('on');}
+function clarao(cor){const f=$('flash');f.style.background=`radial-gradient(60% 50% at 50% 40%, ${cor} 0%, transparent 70%)`;f.classList.remove('on');void f.offsetWidth;f.classList.add('on');}
+function tremer(){document.body.classList.remove('tremendo');void document.body.offsetWidth;document.body.classList.add('tremendo');}
+const cv=$('confete'),cx=cv.getContext('2d');let parts=[],animando=false;
+function ajustar(){cv.width=innerWidth*devicePixelRatio;cv.height=innerHeight*devicePixelRatio;cx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);}
+addEventListener('resize',ajustar);ajustar();
+const CORES=['#D8233F','#E3B54F','#27C36A','#F4ECD8','#FFD166','#6EC6FF'];
+function confete(n){ajustar();for(let i=0;i<n;i++){const lado=Math.random()<.5,moe=Math.random()<.25;parts.push({x:lado?innerWidth*.12+Math.random()*90:innerWidth*.88-Math.random()*90,y:innerHeight+10,vx:(lado?1:-1)*(2.5+Math.random()*5),vy:-(15+Math.random()*10),w:moe?11:6+Math.random()*7,h:moe?11:9+Math.random()*9,rot:Math.random()*6.3,vr:(Math.random()-.5)*.35,cor:moe?'#FFD24A':CORES[i%CORES.length],moe,vida:1});}if(!animando){animando=true;requestAnimationFrame(quadro);}}
+function chuva(n){ajustar();for(let i=0;i<n;i++){const moe=Math.random()<.3;parts.push({x:Math.random()*innerWidth,y:-20-Math.random()*220,vx:(Math.random()-.5)*2,vy:1+Math.random()*3,w:moe?11:6+Math.random()*7,h:moe?11:9+Math.random()*9,rot:Math.random()*6.3,vr:(Math.random()-.5)*.3,cor:moe?'#FFD24A':CORES[i%CORES.length],moe,vida:1.6,g:.06});}if(!animando){animando=true;requestAnimationFrame(quadro);}}
+function quadro(){cx.clearRect(0,0,innerWidth,innerHeight);parts=parts.filter(p=>p.vida>0&&p.y<innerHeight+40);for(const p of parts){p.vy+=p.g??.28;p.vx*=.995;p.x+=p.vx;p.y+=p.vy;p.rot+=p.vr;p.vida-=.006;cx.save();cx.translate(p.x,p.y);cx.rotate(p.rot);cx.globalAlpha=Math.min(1,Math.max(0,p.vida));cx.fillStyle=p.cor;if(p.moe){cx.beginPath();cx.ellipse(0,0,p.w/2,p.w/2*Math.abs(Math.cos(p.rot*2)),0,0,6.3);cx.fill();cx.strokeStyle='#9C7420';cx.lineWidth=1.5;cx.stroke();}else cx.fillRect(-p.w/2,-p.h/2,p.w,p.h*Math.abs(Math.cos(p.rot*2)));cx.restore();}if(parts.length)requestAnimationFrame(quadro);else{animando=false;cx.clearRect(0,0,innerWidth,innerHeight);}}
+function contarAte(alvo){const el=$('banca'),ini=parseFloat(el.dataset.v||0),t0=performance.now();el.dataset.v=alvo;(function passo(t){const k=Math.min(1,(t-t0)/600),e=1-Math.pow(1-k,3);el.textContent=fmt(ini+(alvo-ini)*e);if(k<1)requestAnimationFrame(passo);})(t0);}
+function pintarPainel(){
+  if(!partida){$('painel').style.display='none';$('barra').style.display='none';return;}
+  $('painel').style.display='flex';$('barra').style.display='block';contarAte(partida.banca);
+  $('quem').textContent=perfil.av+' '+perfil.nome;$('serie').textContent=`questão ${Math.min(partida.idx+1,TOTAL)}/${TOTAL} · série ${partida.serie}`;
+  $('prog').style.width=(partida.idx/TOTAL*100)+'%';
+  $('rodape').textContent=RODADA.nome;
+}
+
+/* ================= login ================= */
+async function telaJogador(){
+  partida=null;pintarPainel();$('rodape').textContent=RODADA.nome;
+  const podePrimeira=!stats||stats.primeira==null;
+  palco.innerHTML=`<div class="cartao"><span class="tag">quem está jogando</span>
+    <p class="pergunta">Escolha uma ficha e um apelido. É assim que você aparece no ranking da sala.</p>
+    <div class="avatares" id="avs"></div><input class="nome" id="nome" maxlength="16" placeholder="apelido" autocomplete="off">
+    ${stats?`<div class="stats"><div class="stat"><b>${stats.primeira==null?'—':fmt(stats.primeira)}</b><span>partida oficial</span></div><div class="stat"><b>${stats.melhor==null?'—':fmt(stats.melhor)}</b><span>melhor partida</span></div><div class="stat"><b>${stats.partidas}</b><span>partidas</span></div></div>`:''}
+    <button class="acao arriscar" style="width:100%;margin-top:12px" id="entrar">${podePrimeira?'Jogar a partida oficial':'Jogar partida de treino'}</button>
+    <p class="nota">${TOTAL} questões em ordem: 10 fáceis, 10 intermediárias, 10 difíceis. Você começa com ${fmt(INICIAL)} bar; a partida acaba quando as questões terminam ou a banca zera. ${podePrimeira?'Só a primeira partida entra no ranking.':'Sua partida oficial já está registrada; esta conta só como melhor marca.'} Use sempre o mesmo apelido — apelidos iguais se sobrescrevem.</p>
+    <button class="tudo" id="voltar">Voltar</button></div>`;
+  let av=perfil?.av||AVATARES[Math.floor(Math.random()*AVATARES.length)];
+  if(perfil)$('nome').value=perfil.nome;
+  AVATARES.forEach(a=>{const b=document.createElement('button');b.className='av'+(a===av?' sel':'');b.textContent=a;b.onclick=()=>{av=a;document.querySelectorAll('.av').forEach(x=>x.classList.toggle('sel',x.textContent===a));bip(600,.08,'triangle',.05);};$('avs').appendChild(b);});
+  const entrar=async()=>{const nome=$('nome').value.trim();if(nome.length<2){$('nome').focus();bip(180,.2,'sawtooth',.06);return;}
+    perfil={nome,av};await Dados.salvarPerfil(perfil);stats=(await Dados.lerStats())||{primeira:null,melhor:null,partidas:0};ctx();tocar();novaPartida();};
+  $('entrar').onclick=entrar;$('nome').onkeydown=e=>{if(e.key==='Enter')entrar();};$('voltar').onclick=telaCapa;
+  if(!perfil)$('nome').focus();
+}
+async function carregar(){
+  perfil=await Dados.lerPerfil();
+  stats=perfil?((await Dados.lerStats())||{primeira:null,melhor:null,partidas:0}):null;
+  const emAndamento=perfil?await Dados.lerPartida():null;
+  if(emAndamento&&emAndamento.idx<TOTAL){partida=emAndamento;pote=0;ctx();tocar();pintarPainel();partida.idx%10===0&&!partida.faseVista?telaFase():telaPergunta();}
+  else telaCapa();
+}
+function listaRanking(lista){return lista.length?lista.map((p,i)=>`<li class="${perfil&&slug(p.nome)===slug(perfil.nome)?'eu':''}"><span class="pos">${i+1}</span><span class="avl">${p.av||'🎲'}</span>
+    <span>${p.nome}<br><span class="sub">${p.partidas} partida${p.partidas===1?'':'s'}</span></span>
+    <span class="pts">${fmt(p.primeira)}<span class="sub">melhor ${fmt(p.melhor)}</span></span></li>`).join(''):`<li style="grid-template-columns:1fr">ninguém terminou uma partida ainda</li>`;}
+
+/* ================= início: ranking + nova partida ================= */
+async function telaCapa(){
+  partida=null;pintarPainel();trocarPat(LOBBY);$('rodape').textContent=RODADA.nome;
+  palco.innerHTML=`<div class="letreiro"><div class="logao">MEB<b>BET</b></div><div class="sub">${RODADA.nome.toUpperCase()}</div></div>
+    <button class="cta" id="nova">Nova rodada</button>
+    <div class="cartao" style="margin-top:0"><span class="tag">ranking da sala</span><span class="valor" style="font-size:13px;color:#9CCDB5;font-family:'Barlow';font-weight:400">partida oficial · melhor</span><ul class="rk" id="lista"><li style="grid-template-columns:1fr">carregando…</li></ul></div>`;
+  $('nova').onclick=()=>{bip(660,.12,'triangle',.07);telaJogador();};
+  const lista=await Dados.ranking();if(!$('lista'))return;$('lista').innerHTML=listaRanking(lista);
+}
+async function novaPartida(){
+  partida={idx:0,banca:INICIAL,serie:0,faseVista:false,oficial:stats.primeira==null};pote=0;
+  await Dados.salvarPartida(partida);pintarPainel();telaFase();
+}
+
+/* ================= marco de fase ================= */
+function telaFase(){
+  trocarPat(LOBBY);vinheta();
+  const f=q().fase,k=partida.idx/10+1;
+  const card=(id,at)=>{const F=FASES[id],p=F.premio;return `<div class="fase ${at?'at':''}"><b>${F.nome}</b><span class="g">+${p} por acerto</span><span class="p">−${Math.round(p/3)} por erro</span><span>dica ${Math.round(p*.25)} · eliminar ${Math.round(p*.4)}</span></div>`;};
+  palco.innerHTML=`<div class="cartao"><span class="tag">bloco ${k} de 3</span>
+    <div class="titulo">${k===1?'A mesa abre':'A mesa sobe de nível'}: ${FASES[f].nome}</div>
+    <div class="fases">${card('facil',f==='facil')}${card('media',f==='media')}${card('dificil',f==='dificil')}</div>
+    <p class="nota">Série: +20 % no prêmio por acerto seguido, até ×2. Errar zera a série e desconta um terço do prêmio. ${k===3?'Aqui as questões têm o nível das listas do professor.':''}</p>
+    <button class="acao arriscar" style="width:100%;margin-top:6px" id="ir">${k===1?'Começar':'Continuar'}</button></div>`;
+  $('ir').onclick=()=>{partida.faseVista=true;Dados.salvarPartida(partida);telaPergunta();};
+}
+
+/* ================= pergunta ================= */
+function telaPergunta(){
+  trocarPat(LOBBY);pintarPainel();
+  const Q=q(),base=premioDe(Q),bonus=bonusDe(partida.serie),premio=Math.round(base*bonus),pen=penalDe(Q),cd=dicaDe(Q),ce=elimDe(Q);
+  const ordem=[0,1,2,3];
+  palco.innerHTML=`<div class="cartao"><span class="tag">${Q.n}. ${Q.cap} · ${FASES[Q.fase].nome}</span><span class="valor">+${fmt(premio)}${partida.serie?' <span style="color:#C9B27A;font-size:13px">×'+bonus.toFixed(1)+'</span>':''}<small>−${pen}</small></span>
+    <p class="pergunta">${Q.enunciado}</p>
+    <div class="dicas"><button class="dica" id="bd"><b>Dica</b>${cd} bar</button><button class="dica" id="be"><b>Eliminar duas</b>${ce} bar</button></div>
+    <div id="dicabox"></div><div id="opts"></div></div>`;
+  const box=$('opts');
+  ordem.forEach(idx=>{const b=document.createElement('button');b.className='opt';b.dataset.idx=idx;b.innerHTML=Q.alternativas[idx];b.onclick=()=>responder(idx,b,premio,pen);box.appendChild(b);});
+  const hab=()=>{$('bd').disabled=$('bd').dataset.u||partida.banca<cd;$('be').disabled=$('be').dataset.u||partida.banca<ce;};hab();
+  $('bd').onclick=()=>{if(partida.banca<cd)return;partida.banca-=cd;pintarPainel();bip(520,.12,'triangle',.06);$('dicabox').innerHTML=`<p class="dica-txt">${Q.dica}</p>`;tex($('dicabox'));$('bd').dataset.u=1;hab();};
+  $('be').onclick=()=>{if(partida.banca<ce)return;partida.banca-=ce;pintarPainel();bip(520,.12,'triangle',.06);setTimeout(()=>bip(390,.12,'triangle',.06),100);
+    [...document.querySelectorAll('.opt')].filter(b=>+b.dataset.idx!==Q.correta).sort(()=>Math.random()-.5).slice(0,2).forEach(b=>{b.classList.add('some');b.disabled=true;});$('be').dataset.u=1;hab();};
+  tex(palco);
+}
+function responder(idx,btn,premio,pen){
+  document.querySelectorAll('.opt,.dica').forEach(b=>b.disabled=true);
+  const Q=q(),acertou=idx===Q.correta;btn.classList.add(acertou?'certa':'errada');
+  if(acertou){premioSom();clarao('rgba(227,181,79,.45)');partida.serie++;pote=premio;}
+  else{document.querySelector(`.opt[data-idx="${Q.correta}"]`).classList.add('certa');bip(150,.4,'sawtooth',.07);partida.serie=0;partida.banca=Math.max(0,partida.banca-pen);clarao('rgba(216,35,63,.5)');}
+  pintarPainel();Dados.salvarPartida(partida);
+  const p=document.createElement('p');p.className='porque';p.innerHTML=Q.explicacao;palco.firstElementChild.appendChild(p);tex(p);
+  const b=document.createElement('button');b.className='acao '+(acertou?'arriscar':'guardar');b.style.width='100%';b.style.marginTop='12px';
+  if(acertou){b.textContent='Levar '+fmt(premio)+' bar para a roleta';b.onclick=telaRoleta;}
+  else if(partida.banca<=0){b.textContent='Banca zerada';b.className='acao arriscar';b.style.width='100%';b.onclick=()=>fimPartida(true);}
+  else{b.textContent='Próxima questão';b.onclick=avancar;}
+  palco.firstElementChild.appendChild(b);
+}
+function avancar(){partida.idx++;pote=0;partida.faseVista=false;if(partida.idx>=TOTAL){fimPartida(false);return;}Dados.salvarPartida(partida);pintarPainel();partida.idx%10===0?telaFase():telaPergunta();}
+
+/* ================= roleta ================= */
+function multDoSlider(v){return 1.05*Math.pow(95,v/100);}
+function chanceDe(m){return Math.min(95,95/m);}
+function arco(r,a0,a1){const p=a=>[150+Math.cos((a-90)*Math.PI/180)*r,150+Math.sin((a-90)*Math.PI/180)*r];const[x0,y0]=p(a0),[x1,y1]=p(a1);return `M${x0} ${y0} A ${r} ${r} 0 ${a1-a0>180?1:0} 1 ${x1} ${y1}`;}
+function telaRoleta(){
+  trocarPat(TENSAO);
+  let casas='';for(let i=0;i<36;i++)casas+=`<path d="${arco(118,i*10+.4,(i+1)*10-.4)}" stroke="${i%2?'#B5142F':'#15171C'}" stroke-width="26" fill="none"/>`;
+  let luzes='';for(let i=0;i<24;i++){const a=(i*15-90)*Math.PI/180;luzes+=`<circle cx="${150+Math.cos(a)*141}" cy="${150+Math.sin(a)*141}" r="3.2" fill="#FFF1B8"/>`;}
+  let los='';for(let i=0;i<8;i++){const a=(i*45-90)*Math.PI/180,x=150+Math.cos(a)*100,y=150+Math.sin(a)*100;los+=`<rect x="${x-3}" y="${y-3}" width="6" height="6" transform="rotate(45 ${x} ${y})" fill="#E3B54F"/>`;}
+  palco.innerHTML=`<div class="cartao"><span class="tag">carga em risco</span><span class="valor" id="pote">${fmt(pote)} bar</span>
+    <svg class="roleta" viewBox="0 0 300 300" aria-hidden="true"><defs>
+      <radialGradient id="feltro" cx="50%" cy="40%" r="65%"><stop offset="0" stop-color="#1B7A55"/><stop offset="1" stop-color="#06291E"/></radialGradient>
+      <linearGradient id="ouro" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE39A"/><stop offset=".45" stop-color="#C9962E"/><stop offset=".6" stop-color="#FFE9A8"/><stop offset="1" stop-color="#8C6516"/></linearGradient>
+      <filter id="brilho"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+      <circle cx="150" cy="150" r="147" fill="url(#ouro)"/><circle cx="150" cy="150" r="136" fill="#0B0D11" stroke="#5A4410"/>
+      <g id="luzes">${luzes}</g>${casas}
+      <path id="arcoWin" fill="none" stroke="#27C36A" stroke-width="26" filter="url(#brilho)"/>
+      <circle cx="150" cy="150" r="131" fill="none" stroke="url(#ouro)" stroke-width="3"/><circle cx="150" cy="150" r="105" fill="none" stroke="url(#ouro)" stroke-width="3"/>
+      <circle cx="150" cy="150" r="100" fill="url(#feltro)"/>${los}
+      <text class="centro-num" x="150" y="143" id="numCentro"></text><text class="centro-rot" x="150" y="165">bar se cair no verde · um giro só</text>
+      <g class="agulha" id="agulha"><polygon points="150,24 142,150 158,150" fill="#F4ECD8" stroke="#8C6516" stroke-width="1.5" filter="url(#brilho)"/><circle cx="150" cy="150" r="14" fill="url(#ouro)" stroke="#5A4410" stroke-width="2"/><circle cx="150" cy="150" r="5" fill="#D8233F"/></g></svg>
+    <div class="ctrl"><div class="linha"><span>chance de cair no verde</span><span>multiplica por</span></div>
+      <div class="linha"><span class="chance" id="pc">—</span><span class="mult" id="mx">—</span></div>
+      <input type="range" id="sl" min="0" max="100" value="22" step="0.5">
+      <div class="linha"><span>seguro</span><span>quase tudo vermelho</span></div>
+      <div class="botoes"><button class="acao guardar" id="bg">Guardar</button><button class="acao arriscar" id="ba">Girar</button></div>
+      <button class="tudo" id="bt">Jogar a banca inteira (+${fmt(partida.banca)} bar)</button></div></div>`;
+  $('sl').oninput=atualizar;$('bg').onclick=guardar;$('ba').onclick=girar;$('bt').disabled=partida.banca<=0;
+  $('bt').onclick=()=>{if(partida.banca<=0||girando)return;pote+=partida.banca;partida.banca=0;pintarPainel();bip(200,.5,'sawtooth',.09);$('pote').textContent=fmt(pote)+' bar';$('bt').disabled=true;$('bt').textContent='banca inteira em risco';atualizar();};
+  atualizar();
+}
+function atualizar(){const m=multDoSlider(+$('sl').value),c=chanceDe(m);$('mx').textContent=m.toFixed(2).replace('.',',')+'×';$('pc').textContent=c.toFixed(1).replace('.',',')+'%';$('numCentro').textContent=fmt(pote*m);$('arcoWin').setAttribute('d',arco(118,0,Math.min(359.9,c*3.6)));}
+function guardar(){if(girando)return;partida.banca+=pote;pote=0;bip(660,.15,'triangle',.07);setTimeout(()=>bip(990,.25,'triangle',.07),120);avancar();}
+function girar(){
+  if(girando||pote<=0)return;girando=true;['ba','bg','bt','sl'].forEach(i=>$(i).disabled=true);$('luzes').classList.add('luz');
+  const m=multDoSlider(+$('sl').value),c=chanceDe(m),alvo=Math.random()*360,ganhou=alvo<c*3.6,fim=(3+Math.floor(Math.random()*2))*360+alvo;
+  const dur=matchMedia('(prefers-reduced-motion:reduce)').matches?400:6800,t0=performance.now();let ultimo=-1;const ag=$('agulha');
+  /* arranca em 0,4 s e depois desacelera por quase 6 s, com rastejo final */
+  const ease=k=>{const a=Math.min(1,k/.06),ini=a*a*.02;const kk=Math.max(0,(k-.06)/.94);return Math.min(1,ini+(1-.02)*(1-Math.pow(1-kk,3.2)));};
+  (function passo(t){const k=Math.min(1,(t-t0)/dur),e=ease(k),ang=fim*e;ag.style.transform=`rotate(${ang}deg)`;const fatia=Math.floor(ang/10);if(fatia!==ultimo){ultimo=fatia;if(k<.995)bip(900-300*e,.035,'square',.035);}if(k<1)requestAnimationFrame(passo);else resolver(ganhou,m);})(t0);
+}
+function resolver(ganhou,m){
+  girando=false;
+  if(ganhou){pote=Math.round(pote*m);partida.banca+=pote;pote=0;jackpot();tremer();clarao('rgba(39,195,106,.85)');confete(140);setTimeout(()=>confete(120),450);setTimeout(()=>chuva(90),900);estampa('VERDE!','#27C36A');setTimeout(()=>{pintarPainel();avancar();},2300);}
+  else{pote=0;chiado();tremer();clarao('rgba(216,35,63,.85)');estampa('VERMELHO','#D8233F');setTimeout(()=>{pintarPainel();partida.banca<=0?fimPartida(true):avancar();},1100);}
+}
+
+/* ================= fim ================= */
+async function fimPartida(faliu){
+  const final=faliu?0:partida.banca,oficial=partida.oficial;
+  stats.partidas++;if(oficial)stats.primeira=final;stats.melhor=stats.melhor==null?final:Math.max(stats.melhor,final);
+  await Dados.salvarStats(stats);await Dados.apagarPartida();await Dados.publicar();
+  trocarPat(LOBBY);partida=null;pintarPainel();
+  if(!faliu&&final>INICIAL){jackpot();confete(140);setTimeout(()=>chuva(80),700);}
+  palco.innerHTML=`<div class="cartao"><span class="tag">${faliu?'banca zerada':'partida completa'}</span>
+    <div class="titulo">${faliu?'A casa levou tudo.':fmt(final)+' bar'}</div>
+    <p class="nota" style="font-size:15px">${oficial?'Essa era sua partida oficial: é esse valor que vai para o ranking.':'Partida de treino — conta só como melhor marca.'}</p>
+    <button class="acao ouro-btn" style="width:100%;margin-top:12px" id="ini">Ver o ranking</button></div>`;
+  $('ini').onclick=telaCapa;
+}
+
+/* ================= controles ================= */
+$('bsom').onclick=e=>{som=!som;e.target.classList.toggle('on',som);if(som)bip(700,.1);};
+$('bmus').onclick=e=>{musica=!musica;e.target.classList.toggle('on',musica);musica?tocar():parar();};
+$('brk').onclick=async()=>{if(girando||!partida)return;const volta=partida.idx%10===0&&!partida.faseVista?telaFase:telaPergunta;
+  palco.innerHTML=`<div class="cartao"><span class="tag">ranking da sala</span><ul class="rk" id="lista"><li style="grid-template-columns:1fr">carregando…</li></ul><button class="acao guardar" style="width:100%;margin-top:14px" id="v">Voltar à partida</button></div>`;
+  $('v').onclick=volta;const lista=await Dados.ranking();if(!$('lista'))return;
+  $('lista').innerHTML=listaRanking(lista);};
+carregar();
+</script>
