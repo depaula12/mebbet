@@ -1,11 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MEB BET</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:wght@600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js"></script>
+<script>
+/* KaTeX com dois CDNs de reserva: se um falhar ou demorar, tenta o próximo, e as fórmulas
+   já na tela são compiladas assim que a biblioteca chega. */
+window.__katexPronto=false;window.__katexFila=[];
+(function(){
+  const bases=['https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/','https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/','https://unpkg.com/katex@0.16.9/dist/'];
+  let i=0;
+  function tenta(){
+    if(i>=bases.length)return;const base=bases[i++];
+    const css=document.createElement('link');css.rel='stylesheet';css.href=base+'katex.min.css';document.head.appendChild(css);
+    const s=document.createElement('script');s.src=base+'katex.min.js';
+    s.onload=()=>{const a=document.createElement('script');a.src=base+'contrib/auto-render.min.js';
+      a.onload=()=>{window.__katexPronto=true;window.__katexFila.forEach(el=>{try{if(el.isConnected)renderMathInElement(el,{delimiters:[{left:'$',right:'$',display:false}],throwOnError:false});}catch(e){}});window.__katexFila=[];};
+      a.onerror=tenta;document.head.appendChild(a);};
+    s.onerror=tenta;document.head.appendChild(s);
+  }
+  tenta();
+})();
+</script>
 <style>
   :root{--feltro:#0F4D37;--feltro2:#072A1F;--fundo:#051912;--ouro:#E3B54F;--ouro2:#9C7420;--vermelho:#D8233F;--preto:#15171C;--marfim:#F4ECD8;--verde:#27C36A;--sombra:rgba(0,0,0,.5)}
   *{box-sizing:border-box}
@@ -108,7 +128,8 @@
   .aviso.on{animation:estampa 1.1s ease-out}
   @media (prefers-reduced-motion:reduce){.tremendo,.flash.on,.aviso.on,.luz{animation-duration:.01s}}
 </style>
-
+</head>
+<body>
 <div class="wrap">
   <div class="painel" id="painel" style="display:none">
     <div><p class="rot" id="rotBanca">Sua banca</p><div class="leitura"><span id="banca">0</span><small>bar</small></div></div>
@@ -137,7 +158,7 @@ let perfil=null,stats=null,partida=null,pote=0,som=true,musica=true,girando=fals
 const $=id=>document.getElementById(id), palco=$('palco');
 const fmt=n=>Math.round(n).toLocaleString('pt-BR');
 const slug=s=>s.toLowerCase().normalize('NFD').replace(/[^a-z0-9]/g,'').slice(0,24);
-function tex(el){try{renderMathInElement(el,{delimiters:[{left:'$',right:'$',display:false}],throwOnError:false});}catch(e){}}
+function tex(el){if(window.__katexPronto){try{renderMathInElement(el,{delimiters:[{left:'$',right:'$',display:false}],throwOnError:false});}catch(e){}}else window.__katexFila.push(el);}
 const q=()=>QUESTOES[partida.idx];
 
 /* ================= dados =================
@@ -370,3 +391,5 @@ $('brk').onclick=async()=>{if(girando||!partida)return;const volta=partida.idx%1
   $('lista').innerHTML=listaRanking(lista);};
 carregar();
 </script>
+</body>
+</html>
